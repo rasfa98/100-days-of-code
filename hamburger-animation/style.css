@@ -1,0 +1,29 @@
+div {
+  cursor: pointer;
+}
+
+span {
+  width: 40px;
+  height: 5px;
+  margin: 7px 0;
+  background-color: #000000;
+  display: block;
+  border-radius: 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+div:hover span:nth-child(2) {
+  width: 0;
+}
+
+div:hover span:nth-child(1) {
+  transform: translateY(12px) rotate(135deg);
+  transition-delay: 0.2s;
+  background-color: red;
+}
+
+div:hover span:nth-child(3) {
+  transform: translateY(-12px) rotate(-135deg);
+  transition-delay: 0.2s;
+  background-color: red;
+}
