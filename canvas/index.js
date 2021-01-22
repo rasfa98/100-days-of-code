@@ -2,27 +2,27 @@ const canvas = document.querySelector('#canvas');
 const canvasRect = canvas.getBoundingClientRect();
 const ctx = canvas.getContext('2d');
 
-let mouseDown = false;
+let isDrawing = false;
 
-ctx.fillStyle = '#000000';
+ctx.fillStyle = 'black';
 
 canvas.addEventListener('mousedown', () => {
-  mouseDown = true;
+  isDrawing = true;
 });
 
 canvas.addEventListener('mouseup', () => {
-  mouseDown = false;
+  isDrawing = false;
 });
 
 canvas.addEventListener('mouseleave', () => {
-  mouseDown = false;
+  isDrawing = false;
 });
 
 canvas.addEventListener('mousemove', (event) => {
-  if (mouseDown) {
+  if (isDrawing) {
     const x = event.clientX - canvasRect.left;
     const y = event.clientY - canvasRect.top;
 
-    console.log(`X: ${x}, Y: ${y}`);
+    ctx.fillRect(x, y, 6, 6);
   }
 });
