@@ -1,0 +1,69 @@
+html,
+body,
+.App,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #73c5f7;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.Calculator {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background-color: #ffffff;
+
+  &__row {
+    display: flex;
+    flex-direction: row-reverse;
+
+    &__input {
+      border: none;
+      font-family: inherit;
+      width: 100%;
+      padding: 0;
+      height: 130px;
+    }
+
+    &__button {
+      font-size: 1.5em;
+      background: none;
+      border: none;
+      height: 100px;
+      width: 100px;
+      color: #a6a5a9;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: darken(#ffffff, 3%);
+      }
+
+      &--0 {
+        width: 200px;
+      }
+
+      &--add,
+      &--subtract,
+      &--divide,
+      &--equals,
+      &--multiply {
+        color: #73c5f7;
+      }
+
+      &--clear,
+      &--invert,
+      &--percent {
+        color: #cacacf;
+      }
+    }
+  }
+}
