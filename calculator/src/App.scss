@@ -14,7 +14,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #73c5f7;
+  background-color: #f7737e;
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -56,7 +56,7 @@ body {
       &--divide,
       &--equals,
       &--multiply {
-        color: #73c5f7;
+        color: #f7737e;
       }
 
       &--clear,
