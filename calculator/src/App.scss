@@ -21,6 +21,7 @@ body {
 .Calculator {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background-color: #ffffff;
+  width: 400px;
 
   &__row {
     display: flex;
@@ -28,10 +29,16 @@ body {
 
     &__input {
       border: none;
-      font-family: inherit;
+      text-align: right;
+      font-size: 3em;
+      padding: 30px 30px 10px 30px;
       width: 100%;
-      padding: 0;
-      height: 130px;
+      color: #a6a5a9;
+      outline: none;
+
+      &::placeholder {
+        color: #a6a5a9;
+      }
     }
 
     &__button {
@@ -42,6 +49,7 @@ body {
       width: 100px;
       color: #a6a5a9;
       transition: background-color 0.2s ease-in-out;
+      outline: none;
 
       &:hover {
         background-color: darken(#ffffff, 3%);
