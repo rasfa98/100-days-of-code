@@ -1,0 +1,42 @@
+html,
+body,
+.App,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7df73;
+  font-family: 'Roboto Mono', monospace;
+  flex-direction: column;
+}
+
+.Board {
+  display: flex;
+  flex-direction: column;
+
+  &__row {
+    display: flex;
+
+    &__square {
+      border-radius: 4px;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      margin: 10px;
+      font-size: 2em;
+      cursor: pointer;
+    }
+  }
+}
