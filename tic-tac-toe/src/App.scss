@@ -20,23 +20,29 @@ body {
 }
 
 .Board {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 150px 150px 150px;
+  grid-template-columns: 150px 150px 150px;
 
-  &__row {
+  &__square {
+    border-radius: 4px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    margin: 10px;
+    font-size: 4em;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
 
-    &__square {
-      border-radius: 4px;
-      width: 150px;
-      height: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #ffffff;
-      margin: 10px;
-      font-size: 2em;
-      cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 0 2px black inset;
+    }
+
+    &:disabled {
+      color: black;
     }
   }
 }
