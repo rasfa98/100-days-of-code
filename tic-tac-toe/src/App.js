@@ -14,6 +14,13 @@ function App() {
   const [winner, setWinner] = useState(null);
   const [tie, setTie] = useState(null);
 
+  const restart = () => {
+    setBoard(Array(9).fill(null));
+    setTurn(PLAYERS.PLAYER_1);
+    setWinner(null);
+    setTie(null);
+  };
+
   const handleClick = (index) => {
     board[index] = turn === PLAYERS.PLAYER_1 ? 'x' : 'o';
 
@@ -68,7 +75,10 @@ function App() {
         <h1>{turn}'s turn</h1>
       )}
 
-      <button className={cn('restart', { hide: !winner || !tie })}>
+      <button
+        className={cn('restart', { hide: !winner && !tie })}
+        onClick={restart}
+      >
         Restart
       </button>
 
