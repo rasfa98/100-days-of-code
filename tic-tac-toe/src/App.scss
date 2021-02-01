@@ -50,13 +50,32 @@ body {
   }
 }
 
+.restart {
+  border: none;
+  font-size: 1.2em;
+  padding: 10px 30px;
+  border-radius: 12px;
+  font-family: 'Roboto Mono', monospace;
+  background: none;
+  box-shadow: 0 0 0 2px #ffffff inset;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+
+  &.hide {
+    visibility: hidden;
+  }
+}
+
 .Board {
+  margin-top: 30px;
   display: grid;
   grid-template-rows: 150px 150px 150px;
   grid-template-columns: 150px 150px 150px;
   border-radius: 12px;
   padding: 10px;
   background-color: #614cbd;
+  position: relative;
 
   &__square {
     font-weight: bold;

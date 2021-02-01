@@ -68,6 +68,10 @@ function App() {
         <h1>{turn}'s turn</h1>
       )}
 
+      <button className={cn('restart', { hide: !winner || !tie })}>
+        Restart
+      </button>
+
       <div className="Board">
         {board.map((square, i) => (
           <button
