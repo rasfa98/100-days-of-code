@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cn from 'classnames';
 
 import './App.scss';
 
@@ -58,7 +59,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={cn('App', turn.replace(' ', ''))}>
       {winner ? (
         <h1>{winner} has won!</h1>
       ) : tie ? (
@@ -73,6 +74,7 @@ function App() {
             className="Board__square"
             onClick={() => handleClick(i)}
             disabled={square}
+            data-player={square}
           >
             {square}
           </button>

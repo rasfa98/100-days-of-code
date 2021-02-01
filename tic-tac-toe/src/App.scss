@@ -8,41 +8,112 @@ body,
 
 body {
   margin: 0;
+  color: #ffffff;
 }
 
 .App {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f7df73;
+  background-color: #342887;
   font-family: 'Roboto Mono', monospace;
   flex-direction: column;
+
+  &.Player1 {
+    .Board {
+      &__square {
+        &:hover {
+          box-shadow: 0 0 0 2px #d83554 inset;
+
+          &:after {
+            content: 'x';
+            color: #d83554;
+          }
+        }
+      }
+    }
+  }
+
+  &.Player2 {
+    .Board {
+      &__square {
+        &:hover {
+          box-shadow: 0 0 0 2px #f8d156 inset;
+
+          &:after {
+            content: 'o';
+            color: #f8d156;
+          }
+        }
+      }
+    }
+  }
 }
 
 .Board {
   display: grid;
   grid-template-rows: 150px 150px 150px;
   grid-template-columns: 150px 150px 150px;
+  border-radius: 12px;
+  padding: 10px;
+  background-color: #614cbd;
 
   &__square {
-    border-radius: 4px;
+    font-weight: bold;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: #302563;
     margin: 10px;
-    font-size: 4em;
+    font-size: 5em;
     cursor: pointer;
     border: none;
     outline: none;
     text-transform: uppercase;
+    position: relative;
 
     &:hover {
-      box-shadow: 0 0 0 2px black inset;
+      &:after {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.4;
+      }
+    }
+
+    &[data-player='x'] {
+      color: #d83554;
+
+      &:disabled {
+        color: #d83554;
+      }
+    }
+
+    &[data-player='o'] {
+      color: #f8d156;
+
+      &:disabled {
+        color: #f8d156;
+      }
     }
 
     &:disabled {
-      color: black;
+      &:hover {
+        box-shadow: none !important;
+
+        &:after {
+          display: none;
+        }
+      }
     }
   }
 }
