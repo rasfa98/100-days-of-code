@@ -1,0 +1,50 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1b1b1b;
+}
+
+button {
+  cursor: pointer;
+  color: #e4e4e4;
+  border: 4px solid #e4e4e4;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  font-size: 3em;
+  padding: 10px 30px;
+  background: none;
+  outline: none;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+button:hover {
+  color: #1b1b1b;
+}
+
+button:before {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: #e4e4e4;
+  transition: clip-path 0.5s ease-in-out;
+  clip-path: circle(0 at 50% 50%);
+}
+
+button:hover:before {
+  clip-path: circle(100% at 50% 50%);
+}
