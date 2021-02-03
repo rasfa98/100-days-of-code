@@ -5,18 +5,41 @@ import './App.scss';
 
 function App() {
   const [expression, setExpression] = useState('');
+  const [output, setOutput] = useState('');
 
-  const buttonHandler = (e, value) => {
-    if (!['equals', 'percent', 'invert', 'clear'].includes(value)) {
+  const buttonHandler = (value) => {
+    const lastInput = expression.charAt(expression.length - 1);
+
+    if (['*', '+', '-', '/'].includes(value) && value === lastInput) {
+      return;
+    }
+
+    if (!['equals', 'clear'].includes(value)) {
       setExpression(expression + value);
+
+      if (!['*', '+', '-', '/'].includes(value)) {
+        if (value === lastInput) {
+          setOutput(output + value);
+        } else {
+          setOutput(value);
+        }
+      }
+    }
+
+    if (['*', '-', '+', '/'].includes(lastInput)) {
+      setOutput(value);
     }
 
     if (value === 'equals') {
-      setExpression(evaluate(expression));
+      const evaluatedExpression = evaluate(expression).toString();
+
+      setExpression(evaluatedExpression);
+      setOutput(evaluatedExpression);
     }
 
     if (value === 'clear') {
       setExpression('');
+      setOutput('');
     }
   };
 
@@ -28,59 +51,32 @@ function App() {
             placeholder="0"
             readOnly
             className="Calculator__row__input"
-            value={expression}
+            value={output}
           />
         </div>
 
         <div className="Calculator__row">
           <button
-            className="Calculator__row__button Calculator__row__button--divide"
-            onClick={(e) => buttonHandler(e, '/')}
-          >
-            /
-          </button>
-          <button
-            className="Calculator__row__button Calculator__row__button--percent"
-            onClick={(e) => buttonHandler(e, 'percent')}
-          >
-            %
-          </button>
-          <button
-            className="Calculator__row__button Calculator__row__button--invert"
-            onClick={(e) => buttonHandler(e, 'invert')}
-          >
-            +/-
-          </button>
-          <button
-            className="Calculator__row__button Calculator__row__button--clear"
-            onClick={(e) => buttonHandler(e, 'clear')}
-          >
-            AC
-          </button>
-        </div>
-
-        <div className="Calculator__row">
-          <button
             className="Calculator__row__button Calculator__row__button--multiply"
-            onClick={(e) => buttonHandler(e, '*')}
+            onClick={() => buttonHandler('*')}
           >
             x
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--9"
-            onClick={(e) => buttonHandler(e, '9')}
+            onClick={() => buttonHandler('9')}
           >
             9
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--8"
-            onClick={(e) => buttonHandler(e, '8')}
+            onClick={() => buttonHandler('8')}
           >
             8
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--7"
-            onClick={(e) => buttonHandler(e, '7')}
+            onClick={() => buttonHandler('7')}
           >
             7
           </button>
@@ -89,25 +85,25 @@ function App() {
         <div className="Calculator__row">
           <button
             className="Calculator__row__button Calculator__row__button--subtract"
-            onClick={(e) => buttonHandler(e, '-')}
+            onClick={() => buttonHandler('-')}
           >
             -
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--6"
-            onClick={(e) => buttonHandler(e, '6')}
+            onClick={() => buttonHandler('6')}
           >
             6
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--5"
-            onClick={(e) => buttonHandler(e, '5')}
+            onClick={() => buttonHandler('5')}
           >
             5
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--4"
-            onClick={(e) => buttonHandler(e, '4')}
+            onClick={() => buttonHandler('4')}
           >
             4
           </button>
@@ -116,25 +112,25 @@ function App() {
         <div className="Calculator__row">
           <button
             className="Calculator__row__button Calculator__row__button--add"
-            onClick={(e) => buttonHandler(e, '+')}
+            onClick={() => buttonHandler('+')}
           >
             +
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--3"
-            onClick={(e) => buttonHandler(e, '3')}
+            onClick={() => buttonHandler('3')}
           >
             3
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--2"
-            onClick={(e) => buttonHandler(e, '2')}
+            onClick={() => buttonHandler('2')}
           >
             2
           </button>
           <button
             className="Calculator__row__button Calculator__row__button--1"
-            onClick={(e) => buttonHandler(e, '1')}
+            onClick={() => buttonHandler('1')}
           >
             1
           </button>
@@ -142,22 +138,29 @@ function App() {
 
         <div className="Calculator__row">
           <button
+            className="Calculator__row__button Calculator__row__button--divide"
+            onClick={() => buttonHandler('/')}
+          >
+            /
+          </button>
+
+          <button
             className="Calculator__row__button Calculator__row__button--equals"
-            onClick={(e) => buttonHandler(e, 'equals')}
+            onClick={() => buttonHandler('equals')}
           >
             =
           </button>
           <button
-            className="Calculator__row__button Calculator__row__button--comma"
-            onClick={(e) => buttonHandler(e, ',')}
-          >
-            ,
-          </button>
-          <button
             className="Calculator__row__button Calculator__row__button--0"
-            onClick={(e) => buttonHandler(e, '0')}
+            onClick={() => buttonHandler('0')}
           >
             0
+          </button>
+          <button
+            className="Calculator__row__button Calculator__row__button--clear"
+            onClick={() => buttonHandler('clear')}
+          >
+            C
           </button>
         </div>
       </div>
