@@ -1,0 +1,9 @@
+{
+    "property": "value",
+    "data": 123,
+    "array": [
+        123,
+        6,
+        8
+    ]
+}
