@@ -30,7 +30,7 @@ func main() {
 			&cli.BoolFlag{
 				Name:    "Lowercase",
 				Aliases: []string{"lc"},
-				Usage:   "Include lowrecase characters",
+				Usage:   "Include lowercase characters",
 				Value:   true,
 			},
 			&cli.BoolFlag{
