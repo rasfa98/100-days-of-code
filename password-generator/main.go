@@ -2,69 +2,43 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
 
-	"github.com/urfave/cli"
+	"github.com/thatisuday/commando"
 )
 
-func generatePassword() string {
-	return ""
-}
-
 func main() {
-	app := &cli.App{
-		Flags: []cli.Flag{
-			&cli.IntFlag{
-				Name:    "Length",
-				Aliases: []string{"l"},
-				Usage:   "Password length",
-				Value:   12,
-			},
-			&cli.BoolFlag{
-				Name:    "Uppercase",
-				Aliases: []string{"uc"},
-				Usage:   "Include uppercase characters",
-				Value:   true,
-			},
-			&cli.BoolFlag{
-				Name:    "Lowercase",
-				Aliases: []string{"lc"},
-				Usage:   "Include lowercase characters",
-				Value:   true,
-			},
-			&cli.BoolFlag{
-				Name:    "Numbers",
-				Aliases: []string{"n"},
-				Usage:   "Include numbers",
-				Value:   false,
-			},
-			&cli.BoolFlag{
-				Name:    "Symbols",
-				Aliases: []string{"s"},
-				Usage:   "Include symbols",
-				Value:   false,
-			},
-		},
-		Name:  "Password Generator",
-		Usage: "Generate passwords",
-		Action: func(c *cli.Context) error {
-			var length int
-			var uppercase bool
-			var lowercase bool
-			var numbers bool
-			var symbols boola
+	commando.
+		SetExecutableName("pw").
+		SetVersion("1.0.0").
+		SetDescription("A CLI that generates secure passwords.")
 
-			fmt.Println(length)
+	commando.
+		Register(nil).
+		AddFlag("length,len", "password length", commando.Int, 12).
+		AddFlag("uppercase,up", "should password contain uppercase letters", commando.Bool, nil).
+		AddFlag("lowercase,low", "should password contain lowercase letters", commando.Bool, nil).
+		AddFlag("numbers,num", "should password contain numbers", commando.Bool, nil).
+		AddFlag("symbols,sym", "should password contain symbols", commando.Bool, nil).
+		SetAction(func(args map[string]commando.ArgValue, flags map[string]commando.FlagValue) {
+			for k, v := range flags {
+				fmt.Printf("flag -> %v: %v(%T)\n", k, v.Value, v.Value)
+			}
+		})
 
-			return nil
-		},
-	}
+	commando.
+		Register("info").
+		SetShortDescription("generates secure passwords.").
+		SetDescription("Generates secure password by allowing the user to specify different password criterias.").
+		AddFlag("length,len", "password length", commando.Int, 12).
+		AddFlag("uppercase,up", "should password contain uppercase letters", commando.Bool, nil).
+		AddFlag("lowercase,low", "should password contain lowercase letters", commando.Bool, nil).
+		AddFlag("numbers,num", "should password contain numbers", commando.Bool, nil).
+		AddFlag("symbols,sym", "should password contain symbols", commando.Bool, nil).
+		SetAction(func(args map[string]commando.ArgValue, flags map[string]commando.FlagValue) {
+			for k, v := range flags {
+				fmt.Printf("flag -> %v: %v(%T)\n", k, v.Value, v.Value)
+			}
+		})
 
-	err := app.Run(os.Args)
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
+	commando.Parse(nil)
 }
