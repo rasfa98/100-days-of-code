@@ -3,8 +3,12 @@
     <Brick
       v-for="(brick, index) in bricks"
       v-bind:key="index"
-      v-bind:image="brick.image"
-      v-bind-value="brick.value"
+      v-bind:front="brick.image"
+      v-bind:back="require('../assets/back.png')"
+      v-bind:value="brick.value"
+      v-bind:show="brick.show"
+      v-bind:index="index"
+      v-bind:onClick="onClick"
     />
   </div>
 </template>
@@ -33,14 +37,14 @@ export default {
   },
   methods: {
     generateBricks() {
-      let bricks = new Array(4).fill(null);
+      const images = [...IMAGES, ...IMAGES];
+      let bricks = new Array(8).fill(null);
 
       bricks = bricks.map((brick, i) => ({
-        image: IMAGES[i],
+        image: images[i],
         value: `dog-${++i}`,
+        show: false,
       }));
-
-      bricks.push(...bricks);
 
       this.bricks = bricks;
     },
@@ -57,6 +61,11 @@ export default {
 
       this.bricks = shuffledBricks;
     },
+    onClick(value, index) {
+      const brick = this.bricks[index];
+
+      brick.show = !brick.show;
+    },
   },
 };
 </script>
@@ -65,6 +74,8 @@ export default {
 .board {
   display: grid;
   grid-template-columns: 150px 150px 150px 150px;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
   margin: 20px;
 }
 </style>
