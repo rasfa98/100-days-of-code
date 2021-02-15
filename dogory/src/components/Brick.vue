@@ -2,7 +2,7 @@
   <div
     class="brick"
     v-bind:class="{ show: show }"
-    v-on:click="() => onClick(value, index)"
+    v-on:click="() => onClick(index)"
   >
     <img v-bind:src="front" class="front" />
     <img v-bind:src="back" class="back" />
@@ -16,7 +16,6 @@ export default {
     front: String,
     back: String,
     onClick: Function,
-    value: String,
     show: Boolean,
     index: Number,
   },
@@ -42,8 +41,8 @@ img {
   backface-visibility: hidden;
 }
 
-.back {
-  transform: rotateY(180deg);
+.front {
+  transform: rotateY(-180deg);
 }
 
 .show {

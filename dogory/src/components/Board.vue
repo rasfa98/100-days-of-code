@@ -5,7 +5,6 @@
       v-bind:key="index"
       v-bind:front="brick.image"
       v-bind:back="require('../assets/back.png')"
-      v-bind:value="brick.value"
       v-bind:show="brick.show"
       v-bind:index="index"
       v-bind:onClick="onClick"
@@ -29,6 +28,7 @@ export default {
   data() {
     return {
       bricks: [],
+      disabled: false,
     };
   },
   created() {
@@ -42,8 +42,8 @@ export default {
 
       bricks = bricks.map((brick, i) => ({
         image: images[i],
-        value: `dog-${++i}`,
         show: false,
+        paired: false,
       }));
 
       this.bricks = bricks;
@@ -61,10 +61,52 @@ export default {
 
       this.bricks = shuffledBricks;
     },
-    onClick(value, index) {
-      const brick = this.bricks[index];
+    onClick(index) {
+      const clickedBrick = this.bricks[index];
 
-      brick.show = !brick.show;
+      clickedBrick.show = true;
+
+      const clickedBricks = this.bricks.filter(
+        (brick) => brick.show && !brick.paired
+      );
+      const isMatch =
+        this.bricks.filter(
+          (brick) => brick.image === clickedBrick.image && brick.show
+        ).length === 2;
+
+      if (clickedBricks.length === 2) {
+        this.disabled = true;
+      }
+
+      // No match, reset bricks.
+      if (clickedBricks.length === 2 && !isMatch) {
+        setTimeout(() => {
+          this.bricks = this.bricks.map((brick) => {
+            if (brick.show && !brick.paired) {
+              return {
+                ...brick,
+                show: false,
+              };
+            }
+
+            return brick;
+          });
+        }, 1500);
+      }
+
+      // Match, set paired property to distinguish already paired bricks.
+      if (clickedBricks.length === 2 && isMatch) {
+        this.bricks = this.bricks.map((brick) => {
+          if (brick.show && !brick.paired) {
+            return {
+              ...brick,
+              paired: true,
+            };
+          }
+
+          return brick;
+        });
+      }
     },
   },
 };
