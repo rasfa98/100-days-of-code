@@ -25,13 +25,17 @@ import Brick from "./Brick.vue";
 export default {
   components: { Brick },
   name: "Board",
+  props: {
+    onWin: Function,
+    onStart: Function,
+  },
   data() {
     return {
+      started: false,
       bricks: [],
-      disabled: false,
     };
   },
-  created() {
+  mounted() {
     this.generateBricks();
     this.shuffleBricks();
   },
@@ -62,6 +66,11 @@ export default {
       this.bricks = shuffledBricks;
     },
     onClick(index) {
+      if (!this.started) {
+        this.started = true;
+        this.onStart();
+      }
+
       const clickedBrick = this.bricks[index];
 
       clickedBrick.show = true;
@@ -73,10 +82,6 @@ export default {
         this.bricks.filter(
           (brick) => brick.image === clickedBrick.image && brick.show
         ).length === 2;
-
-      if (clickedBricks.length === 2) {
-        this.disabled = true;
-      }
 
       // No match, reset bricks.
       if (clickedBricks.length === 2 && !isMatch) {
@@ -106,6 +111,10 @@ export default {
 
           return brick;
         });
+      }
+
+      if (!this.bricks.some((brick) => !brick.paired)) {
+        this.onWin();
       }
     },
   },
