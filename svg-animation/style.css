@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(247 115 170);
+}
+
+.icon {
+  width: 200px;
+}
+
+path {
+  fill: transparent;
+  stroke-width: 10;
+  stroke: #ffffff;
+  stroke-dasharray: 1550;
+  stroke-dashoffset: 0;
+  animation: svg-outline 2s linear forwards;
+  animation-delay: 2s;
+}
+
+rect {
+  height: 0;
+  animation: svg-fill 0.5s linear forwards;
+  animation-delay: 3.6s;
+}
+
+@keyframes svg-outline {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  40% {
+    stroke-dashoffset: 1550;
+  }
+  80% {
+    stroke-dashoffset: 3110;
+  }
+  100% {
+    stroke-dashoffset: 3105;
+  }
+}
+
+@keyframes svg-fill {
+  0% {
+    height: 0px;
+  }
+  100% {
+    height: 512px;
+  }
+}
