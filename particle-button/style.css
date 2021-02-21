@@ -1,0 +1,33 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#button {
+  position: relative;
+  color: ##262626;
+  font-size: 2em;
+  border: none;
+  padding: 0 30px;
+  border: 1px solid #262626;
+  background-color: #ffffff;
+  outline: none;
+  text-transform: uppercase;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+}
+
+#button:active {
+  background-color: #f6f6f6;
+}
+
+.particle {
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+}
