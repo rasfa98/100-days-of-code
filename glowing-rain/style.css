@@ -1,0 +1,17 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  position: relative;
+  background-color: #0e0030;
+}
+
+.drop {
+  position: absolute;
+  border-radius: 50%;
+  bottom: 0;
+}
