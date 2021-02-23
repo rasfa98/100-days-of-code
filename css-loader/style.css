@@ -1,0 +1,80 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loader {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+#loader div {
+  background-color: #000000;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+#loader div:nth-child(1),
+#loader div:nth-child(3) {
+  height: 10px;
+}
+
+#loader div:nth-child(2),
+#loader div:nth-child(4) {
+  width: 10px;
+}
+
+#loader div:nth-child(1) {
+  top: 0;
+  left: 0;
+  animation: width 1s ease-in-out forwards;
+}
+
+#loader div:nth-child(2) {
+  top: 0;
+  right: 0;
+  animation: height 1s ease-in-out forwards;
+  animation-delay: 1s;
+}
+
+#loader div:nth-child(3) {
+  bottom: 0;
+  right: 0;
+  animation: width 1s ease-in-out forwards;
+  animation-delay: 2s;
+}
+
+#loader div:nth-child(4) {
+  bottom: 0;
+  left: 0;
+  animation: height 1s ease-in-out forwards;
+  animation-delay: 3s;
+}
+
+@keyframes width {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes height {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
