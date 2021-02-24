@@ -13,68 +13,51 @@ body {
 
 #loader {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
+  animation: rotate 0.8s ease-in-out infinite;
+  border: 5px solid #000000;
 }
 
-#loader div {
-  background-color: #000000;
+#loader:after {
+  top: 0;
+  left: 0;
+  content: '';
   position: absolute;
-  width: 0;
-  height: 0;
+  background-color: #20ada6;
+  height: 100%;
+  width: 100%;
+  transform: scale(0);
+  animation: scale 0.8s ease-in-out infinite forwards alternate;
 }
 
-#loader div:nth-child(1),
-#loader div:nth-child(3) {
-  height: 10px;
-}
-
-#loader div:nth-child(2),
-#loader div:nth-child(4) {
-  width: 10px;
-}
-
-#loader div:nth-child(1) {
+#loader:before {
   top: 0;
   left: 0;
-  animation: width 1s ease-in-out forwards;
+  content: '';
+  position: absolute;
+  background-color: #34d2ca;
+  height: 100%;
+  width: 100%;
+  transform: scale(0);
+  animation: scale 1s ease-in-out infinite forwards alternate;
+  animation-delay: 0.4s;
 }
 
-#loader div:nth-child(2) {
-  top: 0;
-  right: 0;
-  animation: height 1s ease-in-out forwards;
-  animation-delay: 1s;
-}
-
-#loader div:nth-child(3) {
-  bottom: 0;
-  right: 0;
-  animation: width 1s ease-in-out forwards;
-  animation-delay: 2s;
-}
-
-#loader div:nth-child(4) {
-  bottom: 0;
-  left: 0;
-  animation: height 1s ease-in-out forwards;
-  animation-delay: 3s;
-}
-
-@keyframes width {
+@keyframes rotate {
   from {
-    width: 0;
+    transform: rotate(0deg);
   }
   to {
-    width: 100%;
+    transform: rotate(90deg);
   }
 }
 
-@keyframes height {
+@keyframes scale {
   from {
-    height: 0;
+    transform: scale(0);
   }
   to {
-    height: 100%;
+    transform: scale(1);
   }
 }
