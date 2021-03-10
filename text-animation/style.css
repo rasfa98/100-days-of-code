@@ -1,0 +1,29 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #232323;
+}
+
+text {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: svg-outline 6s linear forwards;
+  animation-delay: 3s;
+}
+
+@keyframes svg-outline {
+  0% {
+    stroke-dashoffset: 2000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
