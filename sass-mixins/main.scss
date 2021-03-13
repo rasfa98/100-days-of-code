@@ -1,0 +1,33 @@
+@import 'alignments';
+@import 'devices';
+@import 'resets';
+@import 'cards';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  @include desktop {
+    background: blue;
+  }
+
+  @include tablet {
+    background: green;
+  }
+
+  @include mobile {
+    background: red;
+  }
+}
+
+div {
+  @include center;
+  @include card(8px, green, none);
+}
+
+button {
+  @include button;
+}
