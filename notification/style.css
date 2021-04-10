@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+  color: #212121;
+  font-family: 'Roboto', sans-serif;
+  background: none;
+  outline: none;
+  border: none;
+  background: #ffffff;
+}
+
+.toggle {
+  border: 1px solid #212121;
+  font-size: 1.5em;
+  padding: 10px 30px;
+}
+
+.notification {
+  background: #ffffff;
+  color: #212121;
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
+  transform: translate(200%);
+}
+
+.notification span {
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.notification:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification > i {
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+.notification button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 1.2em;
+  margin: 2px;
+}
+
+.notification button i {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
